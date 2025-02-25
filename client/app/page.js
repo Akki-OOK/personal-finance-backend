@@ -68,6 +68,7 @@ export default function Dashboard() {
           </BarChart>
         </ResponsiveContainer>
       </div>
+      <Link href="/transactions" className="text-blue-500">Manage Transactions</Link>
       <Link href="/login" className="text-blue-500 mt-4 inline-block">Logout</Link>
     </div>
   );
