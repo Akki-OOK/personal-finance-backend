@@ -4,6 +4,8 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const auth = require("../middleware/auth");
+
 // User Registration
 router.post("/register", async (req, res) => {
   try {
@@ -59,6 +61,20 @@ router.post("/login", async (req, res) => {
 
     res.status(200).json({ token, user: { id: user._id, name: user.name } });
   } catch (err) {
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+//GET users
+router.get("/me", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password"); // Exclude password
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (err) {
+    console.error("Error fetching user:", err);
     res.status(500).json({ message: "Server Error" });
   }
 });
