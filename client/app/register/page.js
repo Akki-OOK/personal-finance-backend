@@ -41,10 +41,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleRegister} className="bg-white p-6 shadow-md rounded-md w-96">
-        <h2 className="text-2xl font-semibold mb-4">Register</h2>
-        {error && <p className="text-red-500">{error}</p>}
+    <div className="container">
+      <form onSubmit={handleRegister} className="form-container">
+        <h2>Register</h2>
+        {error && <p className="error-message">{error}</p>}
         <input
           type="text"
           name="name"
@@ -52,7 +52,6 @@ export default function RegisterPage() {
           value={formData.name}
           onChange={handleInputChange}
           required
-          className="w-full p-2 border rounded mb-2"
         />
         <input
           type="email"
@@ -61,7 +60,6 @@ export default function RegisterPage() {
           value={formData.email}
           onChange={handleInputChange}
           required
-          className="w-full p-2 border rounded mb-2"
         />
         <input
           type="password"
@@ -70,11 +68,10 @@ export default function RegisterPage() {
           value={formData.password}
           onChange={handleInputChange}
           required
-          className="w-full p-2 border rounded mb-2"
         />
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded" disabled={!formData.name || !formData.email || !formData.password}>Register</button>
-        <p className="mt-2 text-center">
-          Already have an account? <Link href="/login" className="text-blue-500">Login</Link>
+        <button type="submit" disabled={!formData.name || !formData.email || !formData.password}>Register</button>
+        <p>
+          Already have an account? <Link href="/login">Login</Link>
         </p>
       </form>
     </div>

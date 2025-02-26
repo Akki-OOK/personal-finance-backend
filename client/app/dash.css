@@ -1,0 +1,118 @@
+/* Full-height background with smooth gradient */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #3b0042, #6c0070, #049d89, #00fac9);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  overflow: hidden; /* Prevent horizontal scroll */
+}
+
+/* Gradient animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Dashboard container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  overflow: auto; /* Allow vertical scroll */
+}
+
+/* Sidebar styling */
+.sidebar {
+  background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  text-align: center;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar nav {
+  flex-grow: 1;
+}
+
+.sidebar nav a {
+  display: block;
+  margin-bottom: 10px;
+  color: #049d89;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sidebar nav a:hover {
+  text-decoration: underline;
+}
+
+.logout {
+  color: red;
+  margin-top: auto;
+}
+
+/* Main dashboard styling */
+.dashboard-main {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* Allow vertical scroll */
+}
+
+.dashboard-main h1 {
+  margin-bottom: 20px;
+}
+
+.card-container {
+  display: flex;
+  gap: 10px;
+  height: 100%;
+}
+
+.left-column {
+  width: 20%;
+}
+
+.right-column {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Add gap between cards */
+}
+
+.dashboard-card, .transactions-card {
+  background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.transactions-table {
+  list-style: none;
+  padding: 0;
+}
+
+.transactions-table li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.transactions-table li:last-child {
+  border-bottom: none;
+}

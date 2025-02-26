@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import "./dash.css"; // Import external CSS file
 
 export default function Dashboard() {
   const [transactions, setTransactions] = useState([]);
@@ -39,37 +40,69 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
-  const data = transactions.map((txn) => ({
-    name: txn.category,
-    amount: txn.amount,
-  }));
+  const expenditureData = transactions
+    .filter(txn => txn.type === "expense")
+    .map(txn => ({ name: txn.category, amount: txn.amount }));
+
+  const incomeData = transactions
+    .filter(txn => txn.type === "income")
+    .map(txn => ({ name: txn.category, amount: txn.amount }));
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold">Welcome, {user?.name}</h1>
-      <div className="bg-white p-4 shadow-md rounded-md mt-4">
-        <h2 className="text-xl font-semibold">Transactions</h2>
-        <ul>
-          {transactions.map((txn) => (
-            <li key={txn._id} className="border-b py-2">
-              {txn.type}: {txn.category} - ₹{txn.amount}
-            </li>
-          ))}
-        </ul>
+    <div className="dashboard-container">
+      <div className="sidebar">
+        <h2>Dashboard</h2>
+        <nav>
+          <Link href="/transactions">Transactions</Link>
+          <Link href="/analytics">Analytics</Link>
+          <Link href="/settings">Settings</Link>
+        </nav>
+        <Link href="/login" className="logout">Logout</Link>
       </div>
-      <div className="mt-6 bg-white p-4 shadow-md rounded-md">
-        <h2 className="text-xl font-semibold">Spending Overview</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={data}>
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="amount" fill="#4F46E5" />
-          </BarChart>
-        </ResponsiveContainer>
+
+      <div className="dashboard-main">
+        <h1>Welcome, {user?.name}</h1>
+        <div className="card-container">
+          <div className="left-column">
+            <div className="dashboard-card">
+              <h2>Transactions</h2>
+              <ul className="transactions-table">
+                {transactions.map((txn) => (
+                  <li key={txn._id}>
+                    {txn.type}: {txn.category} - ₹{txn.amount}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="right-column">
+            <div className="transactions-card">
+              <h2>Expenditure Overview</h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={expenditureData}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="amount" stroke="#FF0000" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="transactions-card">
+              <h2>Income Overview</h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={incomeData}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="amount" stroke="#00FF00" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
       </div>
-      <Link href="/transactions" className="text-blue-500">Manage Transactions</Link>
-      <Link href="/login" className="text-blue-500 mt-4 inline-block">Logout</Link>
     </div>
   );
 }

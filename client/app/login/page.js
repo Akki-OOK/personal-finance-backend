@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
+import "./login.css"; // Import the CSS file
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -23,31 +24,31 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleLogin} className="bg-white p-6 shadow-md rounded-md w-96">
-        <h2 className="text-2xl font-semibold mb-4">Login</h2>
-        {error && <p className="text-red-500">{error}</p>}
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full p-2 border rounded mb-2"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 border rounded mb-2"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">Login</button>
-        <p className="mt-2 text-center">
-          Don't have an account? <Link href="/register" className="text-blue-500">Register</Link>
+    <div className="container">
+      <div className="login-box">
+        <h2>Login</h2>
+        {error && <p>{error}</p>}
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        <p>
+          Don't have an account? <Link href="/register">Register</Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 }

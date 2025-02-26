@@ -1,0 +1,105 @@
+/* Full-height background with smooth gradient */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #3b0042, #6c0070, #049d89, #00fac9);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+  }
+  
+  /* Gradient animation */
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Centering the login box */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Login box styling */
+  .login-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 380px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .login-box:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Title */
+  .login-box h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #333;
+    font-weight: 600;
+  }
+  
+/* Input fields */
+.login-box input {
+    width: 80%;  /* Changed from 100% to 80% */
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Input focus effect */
+  .login-box input:focus {
+    border-color: #049d89;
+    outline: none;
+    box-shadow: 0 0 10px rgba(4, 157, 137, 0.3);
+  }
+  
+  /* Button */
+  .login-box button {
+    width: 89%;
+    padding: 14px;
+    background-color: #049d89;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .login-box button:hover {
+    background-color: #037a6d;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Register link */
+  .login-box p {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .login-box p a {
+    color: #049d89;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-box p a:hover {
+    text-decoration: underline;
+  }
+  

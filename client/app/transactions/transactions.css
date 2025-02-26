@@ -1,0 +1,102 @@
+/* Full-height background with smooth gradient */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #3b0042, #6c0070, #049d89, #00fac9);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  overflow: hidden; /* Prevent horizontal scroll */
+}
+
+/* Gradient animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Transactions container */
+.transactions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  overflow: auto; /* Allow vertical scroll */
+}
+
+.transactions-container h1 {
+  margin-bottom: 20px;
+}
+
+.transactions-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.transactions-form input,
+.transactions-form select,
+.transactions-form button {
+  padding: 14px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.transactions-form input:focus,
+.transactions-form select:focus {
+  border-color: #049d89;
+  outline: none;
+  box-shadow: 0 0 10px rgba(4, 157, 137, 0.3);
+}
+
+.transactions-form button {
+  background-color: #049d89;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.transactions-form button:hover {
+  background-color: #037a6d;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.transactions-list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+.transactions-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.transactions-list li:last-child {
+  border-bottom: none;
+}
+
+.transactions-container a {
+  color: #049d89;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.transactions-container a:hover {
+  text-decoration: underline;
+}

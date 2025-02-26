@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
+import "./transactions.css";
 
 export default function Transactions() {
   const [transactions, setTransactions] = useState([]);
@@ -49,9 +50,9 @@ export default function Transactions() {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold">Transactions</h1>
-      <form onSubmit={handleSubmit} className="mt-4 bg-white p-4 shadow-md rounded-md">
+    <div className="transactions-container">
+      <h1>Transactions</h1>
+      <form onSubmit={handleSubmit} className="transactions-form">
         <input
           type="text"
           name="category"
@@ -59,8 +60,7 @@ export default function Transactions() {
           value={formData.category}
           onChange={handleInputChange}
           required
-          className="border p-2 rounded-md w-full mb-2"
-        />
+                  />
         <input
           type="number"
           name="amount"
@@ -68,27 +68,25 @@ export default function Transactions() {
           value={formData.amount}
           onChange={handleInputChange}
           required
-          className="border p-2 rounded-md w-full mb-2"
-        />
+                  />
         <select
           name="type"
           value={formData.type}
           onChange={handleInputChange}
-          className="border p-2 rounded-md w-full mb-2"
-        >
+                  >
           <option value="expense">Expense</option>
           <option value="income">Income</option>
         </select>
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded-md w-full">Add Transaction</button>
+        <button type="submit">Add Transaction</button>
       </form>
-      <ul className="mt-6 bg-white p-4 shadow-md rounded-md">
+      <ul className="transactions-list">
         {transactions.map((txn) => (
-          <li key={txn._id} className="border-b py-2">
+          <li key={txn._id}>
             {txn.type}: {txn.category} - ₹{txn.amount}
           </li>
         ))}
       </ul>
-      <Link href="/" className="text-blue-500 mt-4 inline-block">Back to Dashboard</Link>
+      <Link href="/">Back to Dashboard</Link>
     </div>
   );
 }
