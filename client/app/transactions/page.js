@@ -72,7 +72,11 @@ export default function Transactions() {
           <Link href="/transactions" className="active">Transactions</Link>
           <Link href="/analytics">Analytics</Link>
         </nav>
-        <Link href="/logout" className="logout">Logout</Link>
+        <Link href="/login" className="logout"onClick={() => {
+          localStorage.removeItem("token");  // Remove the token
+          router.push("/login");  // Redirect to login
+        }}>
+        Logout</Link>
       </div>
 
       {/* Main Content */}

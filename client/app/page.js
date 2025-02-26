@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
+import Head from "next/head";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import "./dash.css"; // Import external CSS file
 
@@ -68,7 +69,11 @@ export default function Dashboard() {
           <Link href="/transactions">Transactions</Link>
           <Link href="/analytics">Analytics</Link>
         </nav>
-        <Link href="/login" className="logout">Logout</Link>
+        <Link href="/login" className="logout"onClick={() => {
+          localStorage.removeItem("token");  // Remove the token
+          router.push("/login");  // Redirect to login
+        }}>
+        Logout</Link>
       </div>
 
       <div className="dashboard-main">
