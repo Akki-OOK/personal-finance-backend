@@ -1,3 +1,4 @@
+// page.js
 "use client";
 
 import { useState, useEffect } from "react";
@@ -49,44 +50,84 @@ export default function Transactions() {
     }
   };
 
+  const deleteTransaction = async (id) => {
+    const token = localStorage.getItem("token");
+    try {
+      await axios.delete(`${API_BASE_URL}/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setTransactions(transactions.filter(txn => txn._id !== id)); // Update state
+    } catch (error) {
+      console.error("Error deleting transaction", error);
+    }
+  };
+
   return (
-    <div className="transactions-container">
-      <h1>Transactions</h1>
-      <form onSubmit={handleSubmit} className="transactions-form">
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={formData.category}
-          onChange={handleInputChange}
-          required
-                  />
-        <input
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          value={formData.amount}
-          onChange={handleInputChange}
-          required
-                  />
-        <select
-          name="type"
-          value={formData.type}
-          onChange={handleInputChange}
-                  >
-          <option value="expense">Expense</option>
-          <option value="income">Income</option>
-        </select>
-        <button type="submit">Add Transaction</button>
-      </form>
-      <ul className="transactions-list">
-        {transactions.map((txn) => (
-          <li key={txn._id}>
-            {txn.type}: {txn.category} - ₹{txn.amount}
-          </li>
-        ))}
-      </ul>
-      <Link href="/">Back to Dashboard</Link>
+    <div className="dashboard-container">
+      {/* Sidebar */}
+      <div className="sidebar">
+        <h2>Dashboard</h2>
+        <nav>
+          <Link href="/">Overview</Link>
+          <Link href="/transactions" className="active">Transactions</Link>
+          <Link href="/analytics">Analytics</Link>
+        </nav>
+        <Link href="/logout" className="logout">Logout</Link>
+      </div>
+
+      {/* Main Content */}
+      <div className="dashboard-main">
+        <h1>Transactions</h1>
+        <div className="transactions-layout">
+          {/* Form Section */}
+          <div className="transactions-form-section">
+            <form onSubmit={handleSubmit} className="transactions-form">
+              <input
+                type="text"
+                name="category"
+                placeholder="Category"
+                value={formData.category}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="number"
+                name="amount"
+                placeholder="Amount"
+                value={formData.amount}
+                onChange={handleInputChange}
+                required
+              />
+              <select
+                name="type"
+                value={formData.type}
+                onChange={handleInputChange}
+              >
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+              <button type="submit">Add Transaction</button>
+            </form>
+          </div>
+
+          {/* List Section */}
+          <div className="transactions-list-section">
+            <ul className="transactions-list">
+              {transactions.map((txn) => (
+                <li key={txn._id}>
+                  <span className="transaction-type">
+                    {txn.type}: {txn.category}
+                  </span>
+                  <span className={`transaction-amount ${txn.type}`}>
+                    ₹{txn.amount}
+                  </span>
+                  <button onClick={() => deleteTransaction(txn._id)} className="delete-button">Delete</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

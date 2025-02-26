@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
+import "./register.css";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });

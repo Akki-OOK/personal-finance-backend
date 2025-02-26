@@ -40,7 +40,6 @@ body, html {
 .dashboard-container {
   display: flex;
   height: 100vh;
-  overflow: auto; /* Allow vertical scroll */
   width: 100vw;
   padding: 1rem;
   box-sizing: border-box;
@@ -49,14 +48,14 @@ body, html {
 /* Sidebar styling */
 .sidebar {
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 1.25rem;
-  border-radius: 0.75rem;
+  padding: 1.25rem; 
+  border-radius: 0.75rem; 
   box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
   width: 20%; /* Percentage-based width */
   max-width: 250px; /* Maximum width */
   min-width: 180px; /* Minimum width to ensure readability */
   text-align: center;
-  margin-right: 1.25rem;
+  margin-right: 1.25rem; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -91,13 +90,12 @@ body, html {
 /* Main dashboard styling */
 .dashboard-main {
   flex: 1;
-  background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
-  padding: 1.25rem; /* 20px */
-  border-radius: 0.75rem; /* 12px */
-  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2); /* 0 8px 20px */
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 1.25rem; 
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  overflow: auto; /* Allow vertical scroll */
   overflow-y: auto;
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: rgba(75, 0, 130, 0.6) rgba(255, 255, 255, 0.3); /* For Firefox */
@@ -107,14 +105,14 @@ body, html {
   margin-bottom: 1.25rem;
 }
 
-.card-container {
+.analytics-layout {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   width: 100%;
 }
 
-.dashboard-card {
+.analytics-section {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 1.25rem;
   border-radius: 0.75rem;
@@ -123,70 +121,39 @@ body, html {
   box-sizing: border-box;
 }
 
-.transactions-table {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-}
-
-.transactions-table li {
-  padding: 0.625rem 0;
-  border-bottom: 1px solid #ccc;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.transactions-table li:last-child {
-  border-bottom: none;
-}
-
-.delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 0.3125rem 0.625rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.delete-button:hover {
-  background-color: darkred;
-}
-
-/* For charts and graphs */
-.chart-container {
+.analytics-chart-container {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
 }
 
-.transactions-overview {
+.charts-container {
   display: flex;
   justify-content: space-between;
+  gap: 1.25rem;
 }
 
-.expenditure-list, .income-list {
-  width: 48%;
+.chart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.expenditure-list h3, .income-list h3 {
-  margin-bottom: 0.625rem; /* 10px */
+.back-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #049d89;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  transition: background 0.3s;
 }
 
-.expenditure-list ul, .income-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.expenditure-list li, .income-list li {
-  padding: 0.625rem 0; /* 10px 0 */
-  border-bottom: 1px solid #ccc;
-}
-
-.expenditure-list li:last-child, .income-list li:last-child {
-  border-bottom: none;
+.back-button:hover {
+  background-color: #037a6d;
 }
 
 /* Media queries for responsiveness */
@@ -219,7 +186,6 @@ body, html {
   }
 }
 
-/* Small screens and mobile devices */
 @media (max-width: 576px) {
   .sidebar nav {
     flex-direction: column;
@@ -229,13 +195,7 @@ body, html {
     margin: 0.25rem 0;
   }
   
-  .transactions-table li {
+  .charts-container {
     flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .delete-button {
-    margin-top: 0.5rem;
-    align-self: flex-end;
   }
 }

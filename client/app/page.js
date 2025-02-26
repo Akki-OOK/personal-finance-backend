@@ -40,6 +40,18 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
+  const deleteTransaction = async (id) => {
+    const token = localStorage.getItem("token");
+    try {
+      await axios.delete(`https://personal-finance-backend-aw20.onrender.com/api/transactions/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setTransactions(transactions.filter(txn => txn._id !== id)); // Update state
+    } catch (error) {
+      console.error("Error deleting transaction", error);
+    }
+  };
+
   const expenditureData = transactions
     .filter(txn => txn.type === "expense")
     .map(txn => ({ name: txn.category, amount: txn.amount }));
@@ -55,7 +67,6 @@ export default function Dashboard() {
         <nav>
           <Link href="/transactions">Transactions</Link>
           <Link href="/analytics">Analytics</Link>
-          <Link href="/settings">Settings</Link>
         </nav>
         <Link href="/login" className="logout">Logout</Link>
       </div>
@@ -66,43 +77,68 @@ export default function Dashboard() {
           <div className="left-column">
             <div className="dashboard-card">
               <h2>Transactions</h2>
-              <ul className="transactions-table">
-                {transactions.map((txn) => (
-                  <li key={txn._id}>
-                    {txn.type}: {txn.category} - ₹{txn.amount}
-                  </li>
-                ))}
-              </ul>
+              {transactions.length === 0 ? (
+                <p>No transactions found.</p>
+              ) : (
+                <div className="transactions-overview">
+                  <div className="expenditure-list">
+                    <h3>Expenditure</h3>
+                    <ul>
+                      {expenditureData.map((item, index) => (
+                        <li key={index}>
+                          {item.name}: ₹{item.amount}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="income-list">
+                    <h3>Income</h3>
+                    <ul>
+                      {incomeData.map((item, index) => (
+                        <li key={index}>
+                          {item.name}: ₹{item.amount}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
-          <div className="right-column">
-            <div className="transactions-card">
+            <div className="dashboard-card">
               <h2>Expenditure Overview</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={expenditureData}>
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="amount" stroke="#FF0000" />
-                </LineChart>
-              </ResponsiveContainer>
+              {expenditureData.length === 0 ? (
+                <p>No expenditure records found.</p>
+              ) : (
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={expenditureData}>
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Line type="monotone" dataKey="amount" stroke="#FF0000" />
+                  </LineChart>
+                </ResponsiveContainer>
+              )}
             </div>
 
-            <div className="transactions-card">
+            <div className="dashboard-card">
               <h2>Income Overview</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={incomeData}>
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="amount" stroke="#00FF00" />
-                </LineChart>
-              </ResponsiveContainer>
+              {incomeData.length === 0 ? (
+                <p>No income records found.</p>
+              ) : (
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={incomeData}>
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Line type="monotone" dataKey="amount" stroke="#00FF00" />
+                  </LineChart>
+                </ResponsiveContainer>
+              )}
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
