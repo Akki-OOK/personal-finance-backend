@@ -15,6 +15,11 @@ export default function RegisterPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const validateEmail = (email) => {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(email);
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setError(""); // Reset error state
@@ -22,7 +27,8 @@ export default function RegisterPage() {
       setError("Name cannot be empty.");
       return;
     }
-    if (!formData.email.includes("@") || !formData.email.includes(".")) {
+    
+    if (!validateEmail(formData.email)) {
       setError("Please enter a valid email address.");
       return;
     }
