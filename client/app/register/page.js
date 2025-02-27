@@ -22,7 +22,7 @@ export default function RegisterPage() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setError(""); // Reset error state
+    setError("");
     if (!formData.name.trim()) {
       setError("Name cannot be empty.");
       return;

@@ -41,18 +41,6 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
-  const deleteTransaction = async (id) => {
-    const token = localStorage.getItem("token");
-    try {
-      await axios.delete(`https://personal-finance-backend-aw20.onrender.com/api/transactions/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setTransactions(transactions.filter(txn => txn._id !== id)); // Update state
-    } catch (error) {
-      console.error("Error deleting transaction", error);
-    }
-  };
-
   const expenditureData = transactions
     .filter(txn => txn.type === "expense")
     .map(txn => ({ name: txn.category, amount: txn.amount }));

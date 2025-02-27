@@ -1,14 +1,13 @@
-/* transactions.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* Base styles */
+/* Base */
 body, html {
   height: 100%;
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #3b0042, #6c0070, #049d89, #00fac9);
   background-size: 400% 400%;
-  font-size: 16px; /* Base font size */
+  font-size: 16px; /* Base font */
   animation: gradientBG 10s ease infinite;
 }
 
@@ -18,7 +17,7 @@ body, html {
   100% { background-position: 0% 50%; }
 }
 
-/* Custom scrollbar styling */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -52,9 +51,9 @@ body, html {
   padding: 1.25rem; 
   border-radius: 0.75rem; 
   box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
-  width: 20%; /* Percentage-based width */
-  max-width: 250px; /* Maximum width */
-  min-width: 180px; /* Minimum width to ensure readability */
+  width: 20%;
+  max-width: 250px; /* Max width */
+  min-width: 180px;
   text-align: center;
   margin-right: 1.25rem; 
   display: flex;

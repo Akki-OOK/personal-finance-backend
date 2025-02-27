@@ -1,4 +1,3 @@
-/* Full-height background with smooth gradient */
 body, html {
   height: 100%;
   margin: 0;
@@ -6,7 +5,7 @@ body, html {
   background: linear-gradient(135deg, #3b0042, #6c0070, #049d89, #00fac9);
   background-size: 400% 400%;
   animation: gradientBG 10s ease infinite;
-  font-size: 16px; /* Base font size */
+  font-size: 16px; /* Base font */
 }
 
 /* Gradient animation */
@@ -16,7 +15,7 @@ body, html {
   100% { background-position: 0% 50%; }
 }
 
-/* Custom scrollbar styling */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -51,9 +50,9 @@ body, html {
   padding: 1.25rem; 
   border-radius: 0.75rem; 
   box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
-  width: 20%; /* Percentage-based width */
+  width: 20%;
   max-width: 250px; /* Maximum width */
-  min-width: 180px; /* Minimum width to ensure readability */
+  min-width: 180px;
   text-align: center;
   margin-right: 1.25rem; 
   display: flex;
@@ -172,7 +171,7 @@ body, html {
   
   .dashboard-main {
     width: auto;
-    max-height: calc(100vh - 210px); /* Account for sidebar height and margins */
+    max-height: calc(100vh - 210px); /* sidebar height and margins */
   }
   
   .sidebar nav {
@@ -194,7 +193,7 @@ body, html {
   .sidebar nav a {
     margin: 0.25rem 0;
   }
-  
+
   .charts-container {
     flex-direction: column;
   }

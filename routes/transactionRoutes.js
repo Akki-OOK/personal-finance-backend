@@ -9,7 +9,7 @@ router.post("/", auth, async (req, res) => {
     const { amount, type, category, description, date } = req.body;
 
     const transaction = new Transaction({
-      user: req.user.id, // Use the ID from the decoded token
+      user: req.user.id, // ID decoded from token
       amount,
       type,
       category,

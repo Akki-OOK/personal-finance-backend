@@ -1,4 +1,3 @@
-// page.js
 "use client";
 
 import { useState, useEffect } from "react";
@@ -27,6 +26,8 @@ export default function Transactions() {
         setTransactions(res.data);
       } catch (err) {
         console.error("Error fetching transactions", err);
+        localStorage.removeItem("token");
+        router.push("/login");
       }
     };
     fetchTransactions();
@@ -74,16 +75,14 @@ export default function Transactions() {
         </nav>
         <Link href="/login" className="logout"onClick={() => {
           localStorage.removeItem("token");  // Remove the token
-          router.push("/login");  // Redirect to login
+          router.push("/login");
         }}>
         Logout</Link>
       </div>
 
-      {/* Main Content */}
       <div className="dashboard-main">
         <h1>Transactions</h1>
         <div className="transactions-layout">
-          {/* Form Section */}
           <div className="transactions-form-section">
             <form onSubmit={handleSubmit} className="transactions-form">
               <input
@@ -114,7 +113,6 @@ export default function Transactions() {
             </form>
           </div>
 
-          {/* List Section */}
           <div className="transactions-list-section">
             <ul className="transactions-list">
               {transactions.map((txn) => (

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
-import "./login.css"; // Import the CSS file
+import "./login.css";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ export default function LoginPage() {
     try {
       const res = await axios.post("https://personal-finance-backend-aw20.onrender.com/api/users/login", { email, password });
       localStorage.setItem("token", res.data.token);
-      router.push("/"); // Redirect to dashboard
+      router.push("/");
     } catch (err) {
       setError("Invalid credentials, please try again.");
     }

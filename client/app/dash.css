@@ -6,7 +6,7 @@ body, html {
   background: linear-gradient(135deg, #3b0042, #6c0070, #049d89, #00fac9);
   background-size: 400% 400%;
   animation: gradientBG 10s ease infinite;
-  font-size: 16px; /* Base font size */
+  font-size: 16px; /* Base font */
 }
 
 /* Gradient animation */
@@ -16,7 +16,7 @@ body, html {
   100% { background-position: 0% 50%; }
 }
 
-/* Custom scrollbar styling */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -40,21 +40,21 @@ body, html {
 .dashboard-container {
   display: flex;
   height: 100vh;
-  overflow: auto; /* Allow vertical scroll */
+  overflow: auto; /* vertical scroll */
   width: 100vw;
   padding: 1rem;
   box-sizing: border-box;
 }
 
-/* Sidebar styling */
+/* Sidebar */
 .sidebar {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 1.25rem;
   border-radius: 0.75rem;
   box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
-  width: 20%; /* Percentage-based width */
-  max-width: 250px; /* Maximum width */
-  min-width: 180px; /* Minimum width to ensure readability */
+  width: 20%;
+  max-width: 250px; /* Max width */
+  min-width: 180px;
   text-align: center;
   margin-right: 1.25rem;
   display: flex;
@@ -88,16 +88,16 @@ body, html {
   margin-top: auto;
 }
 
-/* Main dashboard styling */
+/* Main Dash */
 .dashboard-main {
   flex: 1;
   background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
-  padding: 1.25rem; /* 20px */
-  border-radius: 0.75rem; /* 12px */
-  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2); /* 0 8px 20px */
+  padding: 1.25rem;
+  border-radius: 0.75rem; 
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  overflow: auto; /* Allow vertical scroll */
+  overflow: auto;
   overflow-y: auto;
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: rgba(75, 0, 130, 0.6) rgba(255, 255, 255, 0.3); /* For Firefox */
@@ -141,21 +141,7 @@ body, html {
   border-bottom: none;
 }
 
-.delete-button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 0.3125rem 0.625rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.delete-button:hover {
-  background-color: darkred;
-}
-
-/* For charts and graphs */
+/* charts and graphs */
 .chart-container {
   width: 100%;
   max-width: 100%;
@@ -172,7 +158,7 @@ body, html {
 }
 
 .expenditure-list h3, .income-list h3 {
-  margin-bottom: 0.625rem; /* 10px */
+  margin-bottom: 0.625rem;
 }
 
 .expenditure-list ul, .income-list ul {
@@ -181,7 +167,7 @@ body, html {
 }
 
 .expenditure-list li, .income-list li {
-  padding: 0.625rem 0; /* 10px 0 */
+  padding: 0.625rem 0;
   border-bottom: 1px solid #ccc;
 }
 
@@ -189,7 +175,7 @@ body, html {
   border-bottom: none;
 }
 
-/* Media queries for responsiveness */
+/* Media queries */
 @media (max-width: 992px) {
   .dashboard-container {
     flex-direction: column;
@@ -200,7 +186,7 @@ body, html {
     max-width: 100%;
     margin-right: 0;
     margin-bottom: 1rem;
-    min-height: 150px; /* Minimum height for sidebar */
+    min-height: 150px; /* Minimum height sidebar */
   }
   
   .dashboard-main {
@@ -219,7 +205,7 @@ body, html {
   }
 }
 
-/* Small screens and mobile devices */
+/* Small screens and mobile */
 @media (max-width: 576px) {
   .sidebar nav {
     flex-direction: column;
